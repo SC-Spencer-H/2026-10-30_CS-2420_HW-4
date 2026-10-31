@@ -157,19 +157,19 @@ Why do Line 4 and Line 5 act differently? (2 or 3 sentences)
 
 /* ======================= B1: HASH TABLE BY HAND =======================
 (a) Chaining. Example: 3: apple -> plum -> null
-0:
-1:
-2:
-3:
-4:
-5:
-6:
+0: melon -> null
+1: null
+2: null
+3: apple -> plum -> null
+4: kiwi -> null
+5: null
+6: lime -> null
 (b) Linear probing. Write the key in each slot, or "empty".
-slot 0:
-slot 1:
-slot 2:
-slot 3:
-slot 4:
-slot 5:
-slot 6:
+slot 0: melon
+slot 1: empty
+slot 2: empty
+slot 3: apple
+slot 4: plum
+slot 5: kiwi
+slot 6: lime
 */
