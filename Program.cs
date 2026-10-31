@@ -31,8 +31,7 @@
         Console.WriteLine();
 
         Console.WriteLine("== B3 CommonNames ==");
-        var both = CommonNames(new[] { "Ava", "Leo", "Maya", "Sam" },
-        new[] { "Leo", "Sam", "Zoe" });
+        var both = CommonNames(new[] { "Ava", "Leo", "Maya", "Sam" }, new[] { "Leo", "Sam", "Zoe" });
         var list = new List<string>(both);
         list.Sort(); // sort only so the output is the same every time
         Console.WriteLine(string.Join(", ", list));
@@ -71,15 +70,36 @@
     static (string Word, int Count) MostFrequentWord(string text)
     {
         string[] words = text.ToLower().Split(' ');
-        // TODO: count each word with a Dictionary<string, int>, then find the biggest count
-        return ("", 0);
+
+        Dictionary<string, int> wordCount = new();
+        foreach (string word in words)
+        {
+            if (!wordCount.ContainsKey(word))
+                wordCount.Add(word, 0);
+            wordCount[word]++;
+        }
+
+        (string word, int count) mostFrequent = ("", 0);
+        foreach (KeyValuePair<string, int> pair in wordCount)
+        {
+            if (pair.Value > mostFrequent.count)
+            {
+                mostFrequent.word = pair.Key;
+                mostFrequent.count = pair.Value;
+            }
+        }
+
+        return mostFrequent;
     }
 
     // B3: Return the names that are on BOTH lists. Use a HashSet.
     static HashSet<string> CommonNames(string[] first, string[] second)
     {
         // TODO
-        return new HashSet<string>();
+        HashSet<string> firstSet = new(first);
+        HashSet<string> secondSet = new(second);
+        firstSet.IntersectWith(secondSet);
+        return firstSet;
     }
 }
 
