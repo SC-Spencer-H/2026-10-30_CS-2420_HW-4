@@ -11,6 +11,7 @@
         var (low, high, avg) = Summarize(new[] { 50 });
         Console.WriteLine($"{low} {high} {avg}");
         Console.WriteLine();
+
         Console.WriteLine("== B2 HashTable ==");
         var ht = new HashTable();
         ht.Set("nails", 100); ht.Set("tile", 50); ht.Set("lumber", 80);
@@ -20,10 +21,12 @@
         Console.WriteLine(ht.TryGet("bolts", out int v1) + " " + v1);
         Console.WriteLine(ht.TryGet("glue", out int v2) + " " + v2);
         Console.WriteLine();
+
         Console.WriteLine("== B3 MostFrequentWord ==");
         Console.WriteLine(MostFrequentWord("the cat and the hat and the bat"));
         Console.WriteLine(MostFrequentWord("Red blue RED green red"));
         Console.WriteLine();
+
         Console.WriteLine("== B3 CommonNames ==");
         var both = CommonNames(new[] { "Ava", "Leo", "Maya", "Sam" },
         new[] { "Leo", "Sam", "Zoe" });
@@ -38,8 +41,25 @@
     // Use only ONE loop.
     static (int Min, int Max, double Average) Summarize(int[] scores)
     {
-        // TODO
-        return (0, 0, 0);
+        if (scores.Length < 1)
+            return (0, 0, 0);
+
+        int min = scores[0];
+        int max = scores[0];
+        int total = scores[0];
+
+        for (int i = 1; i < scores.Length; i++)
+        {
+            if (scores[i] < min)
+                min = scores[i];
+            if (scores[i] > max)
+                max = scores[i];
+            total += scores[i];
+        }
+
+        double average = total / (double)(scores.Length);
+
+        return (min, max, average);
     }
 
     // ======================= PART B: HASH MAPS =======================
