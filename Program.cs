@@ -3,6 +3,8 @@
     public static void Main(string[] args)
     {
         // ======================= TESTS (do not change) =======================
+        Console.Clear();
+
         Console.WriteLine("== A2 Summarize ==");
         var s = Summarize(new[] { 84, 62, 98, 75, 90 });
         Console.WriteLine($"{s.Min} {s.Max} {s.Average}");
@@ -111,7 +113,7 @@ public class HashTable
     {
         return false;
     }
-    
+
     // TODO: if the key is found, put its value in "value" and return true.
     // If not found, set value = 0 and return false.
     public bool TryGet(string key, out int value)
@@ -120,3 +122,34 @@ public class HashTable
         return false;
     }
 }
+
+/* ======================= A1: PREDICT THE OUTPUT =======================
+Write what each line prints BEFORE you run the code.
+Line 1: 77
+Line 2: 88
+Line 3: true
+Line 4: "Lab"
+Line 5: 3
+Why do Line 4 and Line 5 act differently? (2 or 3 sentences)
+- Because the List in the second field is a reference type. When e is made as a copy of d, the list is not copied,
+  only the reference to it. Changing elements of the list is reflected in both tuples since they point to the same one.
+*/
+
+/* ======================= B1: HASH TABLE BY HAND =======================
+(a) Chaining. Example: 3: apple -> plum -> null
+0:
+1:
+2:
+3:
+4:
+5:
+6:
+(b) Linear probing. Write the key in each slot, or "empty".
+slot 0:
+slot 1:
+slot 2:
+slot 3:
+slot 4:
+slot 5:
+slot 6:
+*/
