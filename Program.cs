@@ -14,8 +14,11 @@
 
         Console.WriteLine("== B2 HashTable ==");
         var ht = new HashTable();
-        ht.Set("nails", 100); ht.Set("tile", 50); ht.Set("lumber", 80);
-        ht.Set("bolts", 0); ht.Set("screws", 140);
+        ht.Set("nails", 100);
+        ht.Set("tile", 50);
+        ht.Set("lumber", 80);
+        ht.Set("bolts", 0);
+        ht.Set("screws", 140);
         Console.WriteLine(ht.ContainsKey("lumber"));
         Console.WriteLine(ht.ContainsKey("glue"));
         Console.WriteLine(ht.TryGet("bolts", out int v1) + " " + v1);
@@ -131,6 +134,14 @@ public class HashTable
     // TODO: return true if the key is in the table, false if not.
     public bool ContainsKey(string key)
     {
+        int index = Hash(key);
+        Node? node = dataMap[index];
+        while (node != null)
+        {
+            if (node.Key == key)
+                return true;
+            node = node.Next;
+        }
         return false;
     }
 
@@ -138,6 +149,17 @@ public class HashTable
     // If not found, set value = 0 and return false.
     public bool TryGet(string key, out int value)
     {
+        int index = Hash(key);
+        Node? node = dataMap[index];
+        while (node != null)
+        {
+            if (node.Key == key)
+            {
+                value = node.Value;
+                return true;
+            }
+            node = node.Next;
+        }
         value = 0;
         return false;
     }
